@@ -1,0 +1,10 @@
+/project-folder
+├── index.html          // Home Page
+├── products.html       // Product Category Page
+├── product-details.html// Product Details Page
+├── cart.html           // Cart and Checkout Page
+├── contact.html        // Contact Page
+├── styles
+│   └── style.css       // Main Stylesheet
+└── scripts
+    └── main.js         // Main JavaScript file for cart logic
