@@ -8,3 +8,165 @@
 │   └── style.css       // Main Stylesheet
 └── scripts
     └── main.js         // Main JavaScript file for cart logic
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Discord Server</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <header class="animated-header">
+        <h1>Welcome to Our Server</h1>
+        <p>Explore products, join our community, and connect with us!</p>
+        <a href="https://discord.gg/J5BnynhGmD" class="button">Join our Discord</a>
+    </header>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
+/* Basic reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body { font-family: Arial, sans-serif; background-color: #f9f9f9; color: #333; }
+
+/* Navigation */
+nav {
+    background: #333;
+    padding: 1rem;
+    display: flex;
+    gap: 20px;
+}
+nav a {
+    color: white;
+    text-decoration: none;
+}
+
+/* Header */
+.animated-header {
+    text-align: center;
+    padding: 5rem 2rem;
+    animation: fadeIn 2s ease-out;
+}
+.button {
+    background-color: #007bff;
+    padding: 0.75rem 1.5rem;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <main class="products">
+        <h1>Our Products</h1>
+        <div class="product-category">
+            <!-- Repeat for each product -->
+            <div class="product-card" onclick="viewProductDetails('Product Name')">
+                <img src="product-image.jpg" alt="Product Image">
+                <h2>Product Name</h2>
+                <p>$19.99</p>
+                <button onclick="addToCart('Product Name', 19.99)">Add to Cart</button>
+            </div>
+        </div>
+    </main>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <main class="cart">
+        <h1>Your Cart</h1>
+        <ul id="cart-items">
+            <!-- Items will be listed here via JavaScript -->
+        </ul>
+        <p>Total: $<span id="total-amount">0.00</span></p>
+        <button onclick="checkout()">Checkout</button>
+    </main>
+    <script src="scripts/main.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact</title>
+    <link rel="stylesheet" href="styles/style.css">
+</head>
+<body>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+    <main class="contact">
+        <h1>Contact Us</h1>
+        <p>Join our community on Discord or reach out to us via email.</p>
+        <a href="https://discord.gg/J5BnynhGmD">Join our Discord</a>
+        <form action="https://formspree.io/f/{your-form-id}" method="POST">
+            <input type="email" name="email" placeholder="Your email" required>
+            <textarea name="message" placeholder="Your message"></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </main>
+</body>
+</html>
+let cart = [];
+
+function addToCart(product, price) {
+    cart.push({ product, price });
+    updateCart();
+}
+
+function updateCart() {
+    const cartItems = document.getElementById('cart-items');
+    cartItems.innerHTML = '';
+    let total = 0;
+    cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.product} - $${item.price}`;
+        cartItems.appendChild(li);
+        total += item.price;
+    });
+    document.getElementById('total-amount').textContent = total.toFixed(2);
+}
+
+function checkout() {
+    alert('Proceeding to checkout. Payment integration required.');
+}
